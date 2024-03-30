@@ -233,6 +233,60 @@ file.
 20- Finish this partition
 ![Finish partition after not mounting](photos/finishedAfterNotMounting.png)
 
+21- Lets configure the encrypred volumes now
+![Configure Encrypted Volumes](photos/ConfigEncryptVolumes.png)
+
+22- Accept the confirmation message.
+![Accept to configure Encrypted Volumes](photos/ConfirmToConfigEnrcyptVolumes.png)
+
+23- We start to create encrypted volumes.
+![Create Encrypted Volumes](photos/CreateEncryptedVolumes.png)
+
+24- We select which partition we want to perform the encryption on. Move with arrows to 
+/dev/sda5/ and select it with space.
+![Select sda5 for encryption](photos/SelectSda5ForEncryption.png)
+
+25- We finish configuring the current partition.
+![Done setting up partition](photos/DoneSettingUpPartition.png)
+
+26- We are done, since we do not want to create more encrypted volumes.
+![Finish Encryption](photos/FinishEncryption.png)
+
+27- We accept the confirmation message which tells us that everything inside the partition 
+will be encrypted and that it shouldn't take long to finish.
+![Confirm Finishing Encryption](photos/ConfirmFinishingEncription.png)
+
+28- We don't care if it takes a long time or a short time, we click cancel, since there is 
+nothing to encrypt, because the partition is empty.
+![Wait till encryption finishes](photos/WaitTillEncryptionFinishes.png)
+
+29- Again we will have to enter a password, this time it will be the encryption phrase. As I 
+have previously told you, you must repeat the process and you must write it down, since it 
+will be important in the future.
+![Put password for Encryption](photos/EncryptionPassword.png)
+
+30- Confirm the password
+![Confirm password for Encryption](photos/ConfirmEncryptionPasword.png)
+
+31- We will configure the logical volume manager.
+![Configure Logical Volum Manager](photos/ConfigLogVolMan.png)
+
+32- We will accept the confirmation message, since we agree that the changes will be saved to  
+disk.
+![Confirm writing to disk](photos/ConfirmWritingToDisk.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
