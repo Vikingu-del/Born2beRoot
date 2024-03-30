@@ -269,11 +269,84 @@ will be important in the future.
 ![Confirm password for Encryption](photos/ConfirmEncryptionPasword.png)
 
 31- We will configure the logical volume manager.
-![Configure Logical Volum Manager](photos/ConfigLogVolMan.png)
+![Configure Logical Volume Manager](photos/ConfigLogVolMan.png)
 
 32- We will accept the confirmation message, since we agree that the changes will be saved to  
 disk.
 ![Confirm writing to disk](photos/ConfirmWritingToDisk.png)
+
+33- Let's create a new volume group. Volume groups group partitions together.
+![Create Volume Group](photos/CreateVolumeGroup.png)
+
+34- We have to give the name as indicated in the subject: LVMGroup.
+![Enter name LVMGroup](photos/EnterLVMGroupName.png)
+
+35- Select the partition where we should create the group.
+![Select Device](photos/SelectSda5forVolumeGroup.png)
+
+36- We have to create them as the example in the subject
+![Logical Partitions Example](photos/LogicalPartitionsExample.png)
+![Create First Logical Volume](photos/CreateFirstLogicalVolume.png)
+
+37- We will start by choosing the group where we want them to be created. We select the only 
+one available (the one we just created).
+![Select Logical Volumes Group](photos/SelectVolumeGroup.png)
+
+38- The order of creating the logical units will be the same as indicated in the subject, so 
+we will start with root and end with var-log. Then we will select the name of the logical 
+volume.
+![Put Root Name](photos/putRootName.png)
+
+39- Size, as the subject indicates, will be 10g.
+![Put size](photos/putsize.png)
+
+40- To not cause repetition, go on and do the same for all partitions in the group volume
+and give the same name and size the same as in the example above
+
+41- If you made them all you should have exact window like below, and type finish.
+![Finish logical Partitions](photos/finishedLogicalPartitions.png)
+
+42- Now we can see how in the section where they show us all our partitions and free space, 
+all the logical partitions that we just created already appear. Well, we must configure all of 
+them to select the file system we want and the mount point indicated by the subject. Again we 
+will go in order and select by pressing enter the first one that appears to us, which is home.
+![Set up Home](photos/setupHome.png)
+
+43- It shows us the partition configuration. We must choose a file system since it currently does not have one by pressing with enter at use as do not use.
+![Use Home as Do not Use](photos/useHomeAsDoNotUse.png)
+
+44- Choose the Ext4 file system, it is the most used file system in Linux distributions.
+![Journalist File System](photos/Ext4.png)
+
+45- We must select the mount point by pressing enter on it
+![Select Mount Point](photos/SelectMountPoint.png)
+
+46- For home select home and for others in the future choose the specific for them to not
+repeat the same thing
+![Mount Home with home](photos/homemount.png)
+
+46- Done setting up partition
+![Done setting up partition](photos/DoneSettingUpPartitionHome.png)
+
+46- Go now and do the same for all partitions.
+Only for the var/log you have to enter the mounting point manually and for the swap do not 
+choose Journalist File System but choose swap area after you click use as do not use.
+In the end Finish partitioning and write changes to disk.
+![Finish partitioning](photos/FinishingPartWriteChangesToDisk.png)
+Confirm and after it you will see the installation bar.
+![Installing base system](photos/InstallingBaseSystem.png)
+
+47- It will ask for us to install additional packages but we select no since we don't need them
+
+
+
+
+
+
+
+
+
+
 
 
 
