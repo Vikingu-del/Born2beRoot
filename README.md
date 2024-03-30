@@ -140,5 +140,105 @@ Root User, Kinda have bad memory 🥱
 ![Password confirmation for the Non root-user](photos/NonRootUserPasswordConfirmation.png)
 
 ### Setting up the partitions
+Partitioning is essential for organizing disk space on your server. It divides the disk into separate sections, each serving a specific purpose.
+
+1- use entire disk and set up encrypted LVM: This refers to selecting the guided partitioning 
+option in the installation process, which will automatically partition the disk and set up 
+encrypted Logical Volume Manager (LVM). This option is chosen because the project specifies 
+that encrypted partitions must be used. 
+BUT...
+⚠️❗️ If you want to do the bonus you must click Manual and click here ❗️⚠️: This part serves 
+as a reminder or alert for users who wish to complete the bonus part of the project. It 
+instructs them that if they want to deviate from the automatic guided partitioning and set up 
+the partitions manually (which may be necessary for certain bonus tasks), they should select 
+the "Manual" option instead. I will do first what is required for the bonus but if you want 
+you can skip it and go straight here.
+![Manual Partitioning](photos/ManualConfiguringPartitions.png)
+
+2- In this section it shows us a general description of our partitions and mount points. 
+Currently, we do not have partitions made. To create a new partition table we must choose the 
+device where we want to create them. In our case we will choose the only one available, 
+SCSI2 (0, 0, 0) (sda) - 32.2 GB ATA VBOX HARDDISK in my case. Don't be confused if you have
+SCSI3 because in VirtualBox, the SCSI controller number is assigned automatically by the   
+software and may vary between installations or configurations. It's essentially a virtual 
+representation of the disk controller used by the virtual machine. As long as you're referring 
+to the correct disk (sda) and its capacity (32.2GB ATA VBOX HARDDISK), you should be fine.
+![Device](photos/SCSI2.png)
+
+3- Click yes to confirm the device
+![Confirm Device](photos/ConfirmDevice.png)
+
+4- Once we have completed the previous step we can see how our empty partition table appears. 
+Now we must configure it, to do this we must select the FREE SPACE to create the partitions.
+![Selec FREE SPACE](photos/FreeSpace.png)
+
+5- Create new partition
+![Create New partition](photos/CreateNewPartition.png)
+
+6- Taking the subject's image how the partitions should be we will create them one by one
+![Create New partition for Sda1](photos/SettingSDA1.png)
+
+7- As the subject indicates, the size of the partition must be 500 megabytes.
+![Set size for the first sda](photos/SDA1size.png)
+
+8- Brief description of all types of partitions:
+
+    ◦ Primary: The only partition on which an OS can be installed. There can only be 4 primary partitions per hard drive or 3 primary and one extended.
+
+    ◦ Secondary/Extended: It was designed to break the limitation of 4 primary partitions on a single physical disk. There can only be one partition of this type per disk, and it is only used to contain logical partitions.
+
+    ◦ Logical: Occupies a portion of the extended/primary partition or its entirety, which has been formatted with a specific type of file system (in our case we will use ext4) and a drive has been assigned to it, thus the system The operating system recognizes the logical partitions or their file system. There can be a maximum of 23 logical partitions in an extended partition, however, Linux, the OS we currently work with, reduces this to 15, more than enough to carry out this project.
+For this step we will choose primary since it will be the partition where the Operating System will be installed.
+![Set partition to primary](photos/Primary.png)
+
+9- We will select beginning since we want the new partition to be created at the beginning of 
+the available space.
+![Set partition to the beginning of the available space.](photos/BeginningSda1.png)
+
+10- The following screenshot shows us the details of the partition. We will modify the mount 
+point to which the subject specifies.
+![Configure Mount point for sda1](photos/MountPointSda1.png)
+
+11- We choose boot as the mount point of our partition.
+![Mounting with Boot option](photos/BootMounting.png)
+
+12- We finish configuring the current partition.
+![Finishing sda1 partition](photos/doneWithSda1.png)
+
+13- Once we have completed the previous step, the partition should appear. Now we must create 
+a logical partition with all the available disk space, which has no mount point and which is 
+encrypted. To do this, we select the free space where we want to create it.
+![Create sda5 partition](photos/CreateSda5.png)
+
+14- Create new partition
+![Create New partition](photos/CreateNewPartition.png)
+
+15- We will use the example from the subject
+![Sda5 subject example](photos/sda5example.png)
+
+16- We select max for this partition
+![set max size for sda5](photos/maxsize.png)
+
+17- Since we have to create The LVM we have to choose Logical
+![Choose Logical](photos/Logical.png)
+
+18- Select the mount point
+![Choose mount point](photos/MountPointSda1.png)
+
+19- in the context of virtual machines (VMs) and disk management, logical partitions are       
+typically not mounted directly because they are part of a larger virtual disk image or disk 
+file. 
+![Do not mount it](photos/DoNotMountIt.png)
+
+20- Finish this partition
+![Finish partition after not mounting](photos/finishedAfterNotMounting.png)
+
+
+
+
+
+
+
+
 
 
