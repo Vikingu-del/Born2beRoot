@@ -76,3 +76,69 @@ same results as below, and then type ok.
 step to install Debian.
 ![Start Machine](photos/InstallDebian.png)
 
+## STEP 5: Installing Debian
+
+### 1- Setting up the languange, time zone, keyboard layout
+1- It will have the view like below. To have a larger view for your eyes, right click with your
+mouse, choose the option Virtual Screen 1 and scale it to 200%. After choose the install 
+option since we will use it without Graphical Interface.
+![Install](photos/installOption.png)
+
+2- Now it will ask for the languange im going with English.
+![Choose Language](photos/EnglishLanguage.png)
+
+3- We enter our Country, territory or area. Since I'm in Germany I will put Other.
+![Choose Country](photos/Country.png)
+
+4- We select the country. In my case Germany 🇩🇪
+First I select Europe.
+![Other section for Country select](photos/europe.png)
+After I select Germany.
+![Germany](photos/Germany.png)
+
+5- Configuring locales: I will go with United States
+![Configuring Locales](photos/configuringLocales.png)
+
+6- It is important to select American English as the keyboard configuration, otherwise we will have the keys linked incorrectly.
+![Keyboard Configuration](photos/Keyboard.png)
+
+7- Finally by finishing with this step we should the window below;
+![Finished Language, Area and Keyboard Configuration](photos/configuredLanguageAndKeyboard.png)
+
+### 2- Configuring the Network
+1- It will first require the hostname which by the subject we have to put the user intraname
+followed by 42 -> eseferi42 in my case
+![Setting the Hostname](photos/Hostname.png)
+
+2- Domain name. We will leave this section empty, since the subject does not mention anything about Domain name.
+![Setting the Domain Name](photos/DomainName.png)
+
+3- We must enter a password for the system administration account. It is important to write it 
+down or take a photo, since we will use it. If you want to see the password to make sure you 
+have written it correctly, you must tab until you reach the Show Password in Clear option, you 
+must press the space bar and the password will be displayed. So you should see something like
+the photo below:
+![Setting Password](photos/Pasword.png)
+
+4- Now we have to reconfirm our password
+![Confirming Password](photos/PasswordConfirmation.png)
+
+5- For not using the root account for non-administrative activities it will request to create
+a normal user account. Since for the root account I put eseferi42 for the user I'm writing
+eseferi
+![Non root-user](photos/NonRootUser.png)
+
+6- Now it will require a nickname or username for this non-root user, but I'm proceeding with 
+the previous User name also for the nickname;
+![Nickname for the Non root-user](photos/Nickname.png)
+
+7- We have to choose a password for the Non-root user, I'm proceeding with the same as for the
+Root User, Kinda have bad memory 🥱
+![Password for the Non root-user](photos/NonRootUserPassword.png)
+
+8- Again we have to confirm the password. As I showed while setting the passord for the root user, we can move with arrows do show password and press space.
+![Password confirmation for the Non root-user](photos/NonRootUserPasswordConfirmation.png)
+
+### Setting up the partitions
+
+
