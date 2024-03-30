@@ -511,6 +511,24 @@ is fortified against unauthorized access, bolstering its overall security postur
 
 ![Check ufw after configuring](photos/MachineConfiguration/checkUfw.png)
 
+### Set strong password for sudo 
+
+1- 🔐 Next, we'll create a file at the path /etc/sudoers.d/ to store our password configuration. I've opted to name the file sudo_config for clarity. Execute the command touch /etc/sudoers.d/sudo_config in your terminal to create the file. This file will play a crucial role in managing password settings securely.
+
+![create sudo_config](photos/MachineConfiguration/create_sudo_config.png)
+
+
+📁 To meet the requirement of storing all sudo commands' input and output, we need to create a directory named sudo within the /var/log path. Execute the command mkdir /var/log/sudo in your terminal to create this directory. This ensures that all sudo activities are centrally logged, aiding in system administration and security monitoring.
+
+![create sudo directory](photos/MachineConfiguration/create_sudofolder.png)
+
+✏️ Now, let's edit the file created in the previous step. As mentioned earlier, you can use your preferred text editor, but for simplicity, I'll demonstrate using nano. Execute the command nano /etc/sudoers.d/sudo_config in your terminal to open the file for editing. This step allows us to configure password policies securely and effectively.
+
+![configure sudo_config](photos/MachineConfiguration/config_sudoers.d.png)
+
+2- 
+
+
 
 
 
