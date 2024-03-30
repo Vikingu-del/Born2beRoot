@@ -39,5 +39,5 @@ Overall, Debian offers a reliable, stable, and well-supported platform that alig
 ## STEP 3: New Virtual Machine with Oracle VirtualBox
     1- Open Oracle VirtualBox
     2- Click on the new command on the top
-    ![New Virtual Machine](photos/newVm.png)
+    ![New Virtual Machine]([photos/newVm.png](https://github.com/Vikingu-del/Born2beRoot/blob/main/photos/newVm.png))
     
