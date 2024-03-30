@@ -37,6 +37,7 @@
 Overall, Debian offers a reliable, stable, and well-supported platform that aligns closely with the project's objectives and requirements. It provides a solid foundation for learning system administration and implementing the necessary configurations and tasks outlined in the project description.
 
 ## STEP 3: New Virtual Machine with Oracle VirtualBox
-    1- Open Oracle VirtualBox
-    2- Click on the new command on the top
-   ![New Virtual Machine](photos/newVm.png)
+1- Open Oracle VirtualBox
+
+2- Click on the new command on the top
+![New Virtual Machine](photos/newVm.png)
