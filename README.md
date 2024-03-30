@@ -41,3 +41,38 @@ Overall, Debian offers a reliable, stable, and well-supported platform that alig
 
 2- Click on the new command on the top
 ![New Virtual Machine](photos/newVm.png)
+
+3- It will prompt to Create Virtual Machine window. Fill the specific fields like in the photo.
+If you are not a 42 student you can just store the Machine Folder where you want. After filling
+the fields type next.
+![Virtual Machine Name and Operating System](photos/vmNameAndOs.png)
+
+4- Now we have to set up the memory size we want to use for our VM. You are free to choose
+How much memory you want to use from your computer but I would suggest that 1024MB is enough
+for this project.
+![Hardware](photos/Hardware.png)
+
+5- Now the next prompts are asking to set up a virtual Hard disk. In the VirtualBox setup process, ensure to select 'Dynamically allocated' for storage on the physical hard disk. This option allows the virtual hard disk file to grow in size as needed, optimizing disk space usage. Avoid checking the option to pre-allocate the full size, as it may lead to unnecessary disk space allocation."
+![Virtual Hard Disk Memory](photos/VirtualHardDiskSize.png)
+
+6- So now you should have a summary similar with the photo below. Type finish.
+![Summary](photos/vmSummary.png)
+
+7- After pressing finished you should see your new Vm created like below. You should go to
+settings to start with the next step of mounting an ISO file.
+![VmCreated](photos/VmCreated.png)
+
+## STEP 4: Mount iso file and Start VM
+1- Controller: Under the "Controller: IDE" or "Controller: SATA" section (depending on your VM's configuration), you'll find an empty optical drive (usually labeled "Empty"). Click on the optical drive.
+Attributes: In the attributes section to the right, you'll see a small disk icon next to "IDE Secondary Master" or "SATA Port 1." Click on the disk icon.
+Choose a Disk File: In the dropdown menu, select "Choose a disk file..." Navigate to the location of the ISO file on your computer and select it.
+![Choose Disk File](photos/ChooseDiskFile.png)
+
+2- After choosing Debian ISO image that we dowloaded in the beginning you should have the
+same results as below, and then type ok.
+![Debian Iso Image](photos/DebianIsoImage.png)
+
+3- Now we start the machine by clicking at the Start icon, so we can continue with the next
+step to install Debian.
+![Start Machine](photos/InstallDebian.png)
+
