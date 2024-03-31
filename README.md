@@ -609,11 +609,172 @@ And set the port
 
 ![set port](photos/MachineConfiguration/setport.png)
 
-2- To connect to the virtual machine from the host machine, open a terminal on the host and type ssh eseferi@localhost -p 4242. This command initiates an SSH connection to the virtual machine, specifying the username eseferi and port 4242. You'll be prompted to enter the user password. Once authenticated, the login prompt will appear in green, indicating a successful connection.
+2- To connect to the virtual machine from the host machine, open a terminal on the host and type 
+
+	ssh eseferi@localhost -p 4242. 
+
+This command initiates an SSH connection to the virtual machine, specifying the username 
+eseferi and port 4242. You'll be prompted to enter the user password. Once authenticated, the 
+login prompt will appear in green, indicating a successful connection. In case you are having a 
+problem like below: 
+
+![Error on ssh connection](photos/MachineConfiguration/errorSsshConection.png)
+
+The error message you received indicates that the ECDSA key for the host localhost on port 4242 has changed since the last time you connected, and your SSH client is configured to perform strict host key checking, which prevents the connection due to this change.
+
+Go on and type in your terminal
+
+	nano ~/.ssh/known_hosts
+
+![nano known_hosts](photos/MachineConfiguration/nano_known_hosts.png)
+
+Delete the line that looks like [localhost]:4242 ecdsa-sha2-nistp256 AAAA...
+Save the file and then try connecting again.
+
+![delete previous local host](photos/MachineConfiguration/deletepreviouslocalhost.png)
+
+After try again to connect with 
+
+	ssh eseferi@localhost -p 4242.
+
+And it should ask for the password of the non root user like below:
+
+![success connection via ssh](photos/MachineConfiguration/Sshsucessconnection.png)
+
+Have your machine open while you connect with shh.
+
+### 📜 Writing the script
+
+Entering this section requires careful attention to detail. It's crucial to grasp everything 
+presented here. Avoid taking shortcuts! During evaluation, you'll likely be questioned about t
+the script's functionality or how it operates.
+
+📝 What is a script? It is a file containing a sequence of commands. When executed, these 
+commands perform the functions specified within the script.
+
+1- System Architecture
+
+To display the system's architecture, utilize the uname -a command. This command prints comprehensive information, excluding cases where the CPU or platform hardware is unknown.
 
 
+2- Physical Cores
+
+To determine the number of physical cores, access the file /proc/cpuinfo, which provides CPU-related information such as type, brand, model, and performance. Use the command grep "physical id" /proc/cpuinfo | wc -l to count the number of physical core identifiers.
 
 
+3- Virtual Cores
 
+Similarly, to ascertain the number of virtual cores, again access the file /proc/cpuinfo. This time, use the command grep processor /proc/cpuinfo | wc -l to count the number of processor identifiers.
+
+
+4- RAM
+
+To view RAM memory details, utilize the free command, which provides real-time information about RAM usage, free space, and resources reserved for other purposes. For more detailed command information, refer to free --help. Use free --mega to display memory metrics in megabytes.
+
+After executing this command, filter the output to display only the relevant information. To display used memory, use awk to process the output text files. The command free --mega | awk '$1 == "Mem:" {print $3}' prints the used memory.
+
+To obtain total memory, use a similar command, but print the second word of each row instead of the third. Use free --mega | awk '$1 == "Mem:" {print $2}' to achieve this.
+
+Finally, calculate the percentage of used memory. Use printf to format the output to display only two decimal places. The command free --mega | awk '$1 == "Mem:" {printf("(%.2f%%)\n", $3/$2*100)}' accomplishes this.
+
+
+5- Disk Memory
+
+To view disk memory usage, use the df command to obtain a summary of disk space usage. Specify the -m flag to display memory metrics in megabytes. Filter the output to display only relevant information using grep and awk. The command df -m | grep "/dev/" | grep -v "/boot" | awk '{memory_use += $3} END {print memory_use}' sums up the memory usage.
+
+To obtain total disk space, use a similar command, but sum up the values in the second column instead of the third. Additionally, convert the result to gigabytes if necessary. The command df -m | grep "/dev/" | grep -v "/boot" | awk '{total_size += $2} END {print total_size/1024}' achieves this.
+
+To display the percentage of used memory, combine the previous commands to calculate the percentage and format the output accordingly. The command df -m | grep "/dev/" | grep -v "/boot" | awk '{use += $3} {total += $2} END {printf("(%.2f%%)\n", use/total*100)}' accomplishes this.
+
+
+6- CPU Usage Percentage
+
+To determine the CPU usage percentage, utilize the vmstat command to obtain system statistics. Specify an interval and use tail to select the last line of output. Then, use awk to print the desired column. The command vmstat 1 4 | tail -1 | awk '{print $15}' displays the available memory usage.
+
+Subtract the value obtained from 100 to determine the CPU usage percentage. Print the result with one decimal place and a "%" symbol. This operation completes the script.
+
+
+7- Last Reboot
+
+To view the date and time of the last system reboot, use the who -b command. Filter the output to display only the relevant information using awk. The command who -b | awk '$1 == "system" {print $3 " " $4}' prints the last reboot date and time.
+
+
+8- LVM Active
+
+To check if LVM (Logical Volume Manager) is active, use the lsblk command to show block device information. Filter the output using grep to search for LVM. Based on the result, print "Yes" or "No" accordingly. The command if [ $(lsblk | grep "lvm" | wc -l) -gt 0 ]; then echo yes; else echo no; fi accomplishes this.
+
+
+9- TCP Connections
+
+To determine the number of established TCP connections, we will utilize the ss command, which has replaced the now obsolete netstat. We will filter the output with the -ta flag to display only TCP connections. Then, we will use grep to identify established connections, as there are also connections in the listening state. Finally, we will count the number of lines using wc -l. The command is as follows: ss -ta | grep ESTAB | wc -l.
+
+
+10- Number of Users
+
+We will use the users command, which displays the names of active users. To count the number of words in the command output, we will use wc -w. The entire command is as follows: users | wc -w.
+
+
+11- IP Address & MAC
+
+To obtain the host's IP address, we will use the hostname -I command. For the MAC address, we will use the ip link command, which shows or modifies network interfaces. Since multiple interfaces, IPs, etc., are displayed, we will use grep to search for the desired information and print only what is requested. Use the command ip link | grep "link/ether" | awk '{print $2}' to display only the MAC address.
+
+
+12- Number of Commands Executed with sudo
+
+To obtain the number of commands executed with sudo, we will use the journalctl command, which collects and manages system logs. Specify _COMM=sudo to filter entries by the specified path. Once the search is filtered, further refine it by using grep COMMAND to display only command lines. Finally, use wc -l to count the lines. The entire command is as follows: journalctl _COMM=sudo | grep COMMAND | wc -l. To verify its correctness, execute the command in the terminal, run a sudo command, and then rerun the command to confirm that the count increases.
+
+
+13- This is how the script should look
+
+⚠️ Remember not to copy and paste commands without understanding their functions. ⚠️
+
+From your ssh connection open in super user mode and nano monitoring.sh to create the bash file
+
+![nano monitoring.sh](photos/MachineConfiguration/nanomonitoring_sh.png)
+
+And write the script inside like below
+
+![script.sh](photos/MachineConfiguration/Script_sh.png)
+
+After running the script
+
+![after running script.sh](photos/MachineConfiguration/AfterrunningScript.png)
+
+### Crontab
+
+🧠 What is Crontab?
+Crontab is like the timekeeper of your system. It schedules background tasks to run at specific 
+times or intervals. This enables automation of repetitive tasks without manual intervention.
+
+To configure crontab properly, you'll need to edit the crontab file using the command sudo 
+crontab -u root -e.
+
+Within the file, you'll add the following command to execute your script every 10 minutes: */10 
+\* \* \* \* sh /path/to/your/script.
+
+Remember, crontab is a powerful tool, but it requires careful configuration to ensure tasks run 
+smoothly and efficiently. 🕒
+
+So after typing 
+
+	sudo crontab -u root -e
+
+You should configure the crontab file
+
+![Configurign crotab](photos/MachineConfiguration/configuring_crontab.png)
+
+Operation of each crontab parameter:
+
+	* m: Represents the minute when the script will be executed. Valid values range from 0 to 59.
+
+	* h: Indicates the hour in the 24-hour format. Values range from 0 to 23, where 0 represents midnight (12:00 AM).
+
+	* dom: Stands for the day of the month. For example, setting it to 15 would execute the script on the 15th day of each month.
+
+	* dow: Denotes the day of the week, either as a numeric value (0 to 7, where 0 and 7 represent Sunday) or using the first three letters of the English day names: mon, tue, wed, thu, fri, sat, sun.
+
+	* user: Specifies the user who will execute the command. This can be root or another user with appropriate permissions to run the script.
+
+	* command: Refers to the command or the absolute path of the script to be executed.
 
 
