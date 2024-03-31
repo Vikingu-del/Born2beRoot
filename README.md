@@ -1,6 +1,6 @@
 # Born2beRoot
 
-## Description
+# Description
     "Born to be Root" is a comprehensive guide aimed at empowering individuals who are new to system administration, specifically focusing on mastering the Linux environment. This repository serves as a gateway for beginners to delve into the world of root access and system management with confidence.
 
     Whether you're a budding enthusiast or a professional seeking to enhance your skills, this guide provides step-by-step instructions, tips, and best practices for navigating Linux systems effectively. From understanding fundamental concepts like file systems, permissions, and processes, to advanced topics such as networking, security, and automation, "Born to be Root" equips users with the knowledge and tools necessary to become proficient in system administration.
@@ -11,11 +11,11 @@
 
     For more to understand better what is required I have uploaded the pdf of the subject inside this repository.
 
-## STEP1: Download the VirtualBox
+# STEP1: Download the VirtualBox
 
     If you do not have installed VirtualBox you can go at this link https://www.virtualbox.org/ and download it. We will need to use it to install the operating system we want to use.
 
-## STEP 2: Choosing the operating system
+# STEP2: Choosing the operating system
     DEBIAN OR ROCKY LINUX
 
     Based on the requirements provided in the subject, Debian is highly recommended "Born to be Root" project. Here's why:
@@ -36,7 +36,7 @@
 
 Overall, Debian offers a reliable, stable, and well-supported platform that aligns closely with the project's objectives and requirements. It provides a solid foundation for learning system administration and implementing the necessary configurations and tasks outlined in the project description.
 
-## STEP 3: New Virtual Machine with Oracle VirtualBox
+# STEP 3: New Virtual Machine with Oracle VirtualBox
 1- Open Oracle VirtualBox
 
 2- Click on the new command on the top
@@ -62,7 +62,7 @@ for this project.
 settings to start with the next step of mounting an ISO file.
 ![VmCreated](photos/installation/VmCreated.png)
 
-## STEP 4: Mount iso file and Start VM
+# STEP4: Mount iso file and Start VM
 1- Controller: Under the "Controller: IDE" or "Controller: SATA" section (depending on your VM's configuration), you'll find an empty optical drive (usually labeled "Empty"). Click on the optical drive.
 Attributes: In the attributes section to the right, you'll see a small disk icon next to "IDE Secondary Master" or "SATA Port 1." Click on the disk icon.
 Choose a Disk File: In the dropdown menu, select "Choose a disk file..." Navigate to the location of the ISO file on your computer and select it.
@@ -76,9 +76,9 @@ same results as below, and then type ok.
 step to install Debian.
 ![Start Machine](photos/installation/InstallDebian.png)
 
-## STEP 5: Installing Debian
+# STEP5: Installing Debian
 
-### 1- Setting up the languange, time zone, keyboard layout
+## 1- Setting up the languange, time zone, keyboard layout
 1- It will have the view like below. To have a larger view for your eyes, right click with your
 mouse, choose the option Virtual Screen 1 and scale it to 200%. After choose the install 
 option since we will use it without Graphical Interface.
@@ -105,7 +105,7 @@ After I select Germany.
 7- Finally by finishing with this step we should the window below;
 ![Finished Language, Area and Keyboard Configuration](photos/installation/configuredLanguageAndKeyboard.png)
 
-### 2- Configuring the Network
+## 2- Configuring the Network
 1- It will first require the hostname which by the subject we have to put the user intraname
 followed by 42 -> eseferi42 in my case
 ![Setting the Hostname](photos/installation/Hostname.png)
@@ -139,7 +139,7 @@ Root User, Kinda have bad memory 🥱
 8- Again we have to confirm the password. As I showed while setting the passord for the root user, we can move with arrows do show password and press space.
 ![Password confirmation for the Non root-user](photos/installation/NonRootUserPasswordConfirmation.png)
 
-### Setting up the partitions
+## Setting up the partitions
 Partitioning is essential for organizing disk space on your server. It divides the disk into separate sections, each serving a specific purpose.
 
 1- use entire disk and set up encrypted LVM: This refers to selecting the guided partitioning 
@@ -368,7 +368,7 @@ GRUB plays a crucial role in the boot process of Linux-based operating systems, 
 
 Now your system will open and ask for password lets jump to the next steps :)
 
-## STEP 6: Virtual Machine Configuration
+# STEP6: Virtual Machine Configuration
 
 1- The first thing we must do is select Debian GNU/Linux.
 We must enter the encryption password that we previously used.
@@ -378,7 +378,7 @@ We must enter the encryption password that we previously used.
 ![Enter Non root user password](photos/MachineConfiguration/EnterNonRootUserPassword.png)
 We now have everything ready to start configuring our Debian virtual machine 🥳
 
-### Installing sudo and configuring users and groups
+## Installing sudo and configuring users and groups
 
 1- To install sudo we must first be in the root user, to do this we will put Su in the 
 terminal and enter the root password. Once we have accessed the root user, we must enter the 
@@ -426,7 +426,7 @@ the command getent group group_name or we can also edit the file /etc/group nano
 and our user should appear in the sudo and login42 groups.
 ![Add eseferi to user42 and sudo](photos/MachineConfiguration/addEseferiToSudo.png)
 
-### Installation and Configuration of SSH
+## Installation and Configuration of SSH
 🔒 SSH, or Secure Shell, is both a protocol and a program used for remote access to servers. It establishes a secure channel, encrypting all data exchanged between the client and server. This ensures confidentiality and integrity, making SSH a vital tool for secure remote administration and file transfer.
 
 1- The first thing we will do is do sudo apt update to update the repositories that we defined 
@@ -490,7 +490,7 @@ changes have been made to the server listening, Port 4242 should appear.
 
 ![Restart ssh after updating it](photos/MachineConfiguration/restartSSH.png)
 
-### Installing and Configuring UFW
+## Installing and Configuring UFW
 🔒 UFW, or Uncomplicated Firewall, is a user-friendly front-end for managing iptables, the default firewall configuration tool for many Linux distributions. It simplifies the process of configuring firewall rules through a straightforward command-line interface, allowing users to easily control network traffic and enhance system security with just a few simple commands. With UFW, even users with limited experience in firewall management can efficiently set up and maintain robust firewall policies to safeguard their systems against unauthorized access and potential threats.
 
 1- 🛡️ To begin, the initial step is to install UFW. Execute the command <b><i>sudo apt 
@@ -511,7 +511,7 @@ is fortified against unauthorized access, bolstering its overall security postur
 
 ![Check ufw after configuring](photos/MachineConfiguration/checkUfw.png)
 
-### Set strong password for sudo 
+## Set strong password for sudo 
 
 1- 🔐 Next, we'll create a file at the path /etc/sudoers.d/ to store our password configuration. I've opted to name the file sudo_config for clarity. Execute the command touch /etc/sudoers.d/sudo_config in your terminal to create the file. This file will play a crucial role in managing password settings securely.
 
@@ -527,7 +527,7 @@ is fortified against unauthorized access, bolstering its overall security postur
 ![configure sudo_config](photos/MachineConfiguration/config_sudoers.d.png)
 
 
-### Strong Password Policy Settings 🔑
+## Strong Password Policy Settings 🔑
 
 1- The first step will be to edit the login.defs file.
 
@@ -594,7 +594,7 @@ configuration.
 
     enforce_for_root: Enforces these password policies for the root user, enhancing security even for privileged accounts.
 
-### Connect from SSH 
+## Connect from SSH 
 
 1- Before closing the virtual machine, don't forget to save a snapshot through VirtualBox's 
 configuration settings. This ensures that you can easily revert to the current state of the 
@@ -643,7 +643,7 @@ And it should ask for the password of the non root user like below:
 
 Have your machine open while you connect with shh.
 
-### 📜 Writing the script
+## 📜 Writing the script
 
 Entering this section requires careful attention to detail. It's crucial to grasp everything 
 presented here. Avoid taking shortcuts! During evaluation, you'll likely be questioned about t
@@ -740,7 +740,7 @@ After running the script
 
 ![after running script.sh](photos/MachineConfiguration/AfterrunningScript.png)
 
-### Crontab
+## Crontab
 
 🧠 What is Crontab?
 Crontab is like the timekeeper of your system. It schedules background tasks to run at specific 
@@ -777,7 +777,7 @@ Operation of each crontab parameter:
 
 	* command: Refers to the command or the absolute path of the script to be executed.
 
-## STEP7: Wordpress & services configuration 
+# STEP7: Wordpress & services configuration 
 
 🧠 What is Lighttpd? Lighttpd is a web server engineered to deliver exceptional speed, 
 security, flexibility, and adherence to web standards. It's tailored for environments 
@@ -806,7 +806,7 @@ the capture.
 
 ![add port 80 to machine](photos/bonus/addport80.png)
 
-### WordPress
+## WordPress
 
 💡 What is Wordpress? It is a content management system focused on the creation of any type of
 website, offering extensive customization and flexibility.
@@ -846,7 +846,7 @@ latest english version of WordPress.
 ![Change Permissions](photos/bonus/ChangePermissions.png)
 
 
-### Mariadb
+## Mariadb
 
 💡 What is MariaDB? MariaDB is a robust relational database management system (RDBMS) that 
 offers high performance, scalability, and reliability. It is widely used for various purposes, 
@@ -896,7 +896,7 @@ authentication. As we already have a protected root account, select 'N' to decli
 
 ![exit database](photos/bonus/ExitMariadb.png)
 
-### PHP
+## PHP
 
 💡 What is PHP? PHP, a widely-used programming language, primarily serves for the development of dynamic web applications and interactive websites. Notably, PHP executes on the server side.
 
@@ -954,3 +954,152 @@ applications on the server, and update it in the end
 8- If we access our localhost again from the browser, we can observe our functional page.
 
 ![Functional Wordpress page](photos/bonus/FucntionalWordPressPage.png)
+
+# STEP8: Installing FTP as an optional service from the subject
+
+1- Install ftp, check if it is installed and allow the port 21 with ufw
+
+	sudo apt install vsftpd
+	dpkg -l | grep vsftpd
+	sudo ufw allow 21
+
+![Install ftp](photos/ftp/Instalftp.png)
+
+2- Configure ftp by configuring vsftfpd.conf file
+
+	sudo nano /etc/vsftpd.conf
+
+![nanoftp](photos/ftp/nanoftp.png)
+
+	uncomment write_enable=YES
+
+It was like this
+
+![Commented write_enable option](photos/ftp/ComentedWriteEnable.png)
+
+Now it should be like below
+
+![Uncommented Write_enable option](photos/ftp/UncommentedWriteEnable.png)
+
+Navigate to the /home/user/ directory in my case /home/eseferi and write this commands
+
+	cd /home/eseferi/
+	sudo mkdir ftp
+	cd ftp
+	sudo mkdir files
+	cd ..
+	sudo chown nobody:nogroup ftp
+	sudo chmod a-2 ftp
+	user_sub_token=$USER
+	local_root=/home/$USER/ftp
+
+![Enter Command Lines](photos/ftp/EnterCommLines.png)
+
+	These lines are shell commands used to set up a basic FTP directory structure and permissions. Let's break down each line:
+
+	sudo mkdir /home/<user>/ftp: This command creates a new directory named "ftp" within the home directory of the specified user. Replace <user> with the actual username.
+
+	sudo mkdir /home/<user>/ftp/files: This command creates a subdirectory named "files" within the "ftp" directory created in the previous step.
+
+	sudo chown nobody:nogroup /home/<user>/ftp: This command changes the ownership of the "ftp" directory to the user and group "nobody:nogroup". This is often done for security purposes to restrict access to the FTP directory.
+
+	sudo chmod a-w /home/<user>/ftp: This command removes the write permission for all users (owner, group, and others) from the "ftp" directory. This ensures that users cannot write or modify files within the directory, only read them.
+
+	user_sub_token=$USER: This line sets the variable user_sub_token to the value of the current user's username.
+
+	local_root=/home/$USER/ftp: This line sets the local_root parameter to the path of the FTP directory for the current user. The $USER variable is replaced with the current user's username. This parameter defines the root directory for the user when they log in via FTP, restricting their access to only the specified directory and its subdirectories.
+
+Open again vsftpd.conf
+
+	nano vsftpd.conf
+
+![nanoftp](photos/ftp/nanoftp.png)
+
+And uncommend chroot_local_user=YES o prevent user from acessing files or using commands outside the directory tree
+
+so from commented
+
+![commented chroot](photos/ftp/ComentedChroot.png)
+
+to uncommented like below
+
+![uncommented chroot](photos/ftp/uncommentedChroot.png)
+
+3- Create an empty user list file with this command
+
+	sudo nano /etc/vsftpd.userlist
+
+![nano vsftpd.userlist](photos/ftp/nanovsftpd.userlist.png)
+
+You should see an empty file like this 
+
+![Empty user list file](photos/ftp/emptyuserlist.png)
+
+save the file and after run this command in terminal
+
+	sudo nano /etc/vsftpd.userlist
+
+open again vsftpd.userlist file with nano 
+
+	sudo nano /etc/vsftpd.userlist
+
+and add this lines 
+
+	userlist_enable=YES
+	userlist_file=/etc/vsftpd.userlist
+	userlist_deny=NO
+
+You should have something like this 
+
+![Configured vsftpd.userlist](photos/ftp/configurevsftpd.userlist.png)
+
+4- Add the port 21 in you VMbox 
+
+![Add port 21](photos/ftp/ADdport21.png)
+
+5- Check Ftp status
+
+	sudo systemctl status vsftpd
+
+![check ftp status](photos/ftp/CheckFtpStatus.png)
+
+We can also check if it is listening in port 21
+
+	sudo ss -tuln | grep :21
+
+![ftp listening in port 21](photos/ftp/ftpListeningon21.png)
+
+The output indicates that there is a service listening on port 21, which is typically the port used by the 
+FTP service. Here's what the output means:
+
+	tcp: Indicates that the listening socket is using the TCP protocol.
+
+	LISTEN: Indicates that the socket is in the listening state, waiting for incoming connections.
+
+	0 32: This column indicates the receive queue length and send queue length for the socket. In this 
+	case, 0 indicates that there are no connections in the receive queue, and 32 indicates the maximum 
+	queue length for pending connections.
+
+	*:21: Indicates that the service is listening on all available network interfaces (*) on port 21.
+	
+	*:*: Indicates that the service is listening on all available network interfaces for any source port.
+
+Based on this output, it appears that there is a service listening on port 21, which is likely your FTP service. This confirms that FTP is indeed enabled and running on your system.
+
+6- You can connect from the real pc to your virtual easily with ftp \<ip\> and play with it (ip would be equal with the localhost ip 127.0.0.1)
+But I want to make it a little bit more interesting and since I'm working on mac I will download Cyberduck
+from this link https://cyberduck.io/download/ and installit.
+
+You should see something like below
+
+![Installed cyber duck](photos/ftp/InstalledCyberDuck.png)
+
+Press on oppen connection and fill the required fields
+
+![Fill cyber duck](photos/ftp/FillCyberDuck.png)
+
+Good job now you are connected and you can receive and send files with ftp
+
+![Connected ftp](photos/ftp/connectedFtp.png)
+
+🎉 Thank you for embarking on this journey with me! I trust that this guide has been a valuable resource for you, helping you navigate through your tasks smoothly. If you found this guide helpful and informative, consider showing your support by starring this repository. Your encouragement fuels my passion to create more helpful content and enhance existing guides. Don't hesitate to reach out if you have any feedback, suggestions, or questions. Keep shining and happy exploring! 🚀🌟
