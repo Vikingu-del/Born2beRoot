@@ -777,4 +777,180 @@ Operation of each crontab parameter:
 
 	* command: Refers to the command or the absolute path of the script to be executed.
 
+## STEP7: Wordpress & services configuration 
 
+🧠 What is Lighttpd? Lighttpd is a web server engineered to deliver exceptional speed, 
+security, flexibility, and adherence to web standards. It's tailored for environments 
+prioritizing speed, as it requires fewer CPU and RAM resources compared to alternative servers.
+
+1- Installation
+
+	sudo apt install lighttpd
+
+![install light tpd](photos/bonus/installlightpd.png)
+
+
+2- Allow connections through port 80
+
+	sudo ufw allow 80
+
+3- Check if the port is allowed
+
+	sudo ufw status
+
+![check if lighttpd is allowd](photos/bonus/checkLighttpd.png)
+
+4- We include the rule that encompasses port 80. If you're uncertain about how to add rules in 
+port forwarding, navigate to Machine configuration → Network → Port forwarding, and replicate 
+the capture.
+
+![add port 80 to machine](photos/bonus/addport80.png)
+
+### WordPress
+
+💡 What is Wordpress? It is a content management system focused on the creation of any type of
+website, offering extensive customization and flexibility.
+
+1- Installation
+First install <b><i>wget and zip</b></i>
+
+	sudo apt install wget zip
+
+![install wget and zip](photos/bonus/InstallWgetZip.png)
+💡 What is wget? It is a versatile command-line tool used for downloading files from the internet. </br>
+💡 What is zip? It is a command-line utility for compressing and decompressing files in ZIP format. </br>
+
+2- We have to go to <b><i>www</b></i> directory inside <b><i>var</b></i> and download the 
+latest english version of WordPress.
+
+	cd /var/www/
+	sudo wget https://wordpress.org/latest.zip
+
+![Download Wordpress](photos/bonus/DownloadWordpress.png)
+
+3- Unzip the dowloaded file
+
+	sudo unzip latest.zip
+
+4-  Rename html folder and call it html_old. Rename wordpress folder and call it html.
+
+	sudo mv html/ html_old/
+	sudo mv wordpress/ html
+
+![Rename Folders](photos/bonus/renamFolders.png)
+
+5- Set the permissions on html folder.
+
+	sudo chmod -R 755 html
+
+![Change Permissions](photos/bonus/ChangePermissions.png)
+
+
+### Mariadb
+
+💡 What is MariaDB? MariaDB is a robust relational database management system (RDBMS) that 
+offers high performance, scalability, and reliability. It is widely used for various purposes, 
+including data warehousing, e-commerce, enterprise-level functions, and logging applications.
+
+1- Installation
+
+	sudo apt install mariadb-server
+
+![Mariadb Installation](photos/bonus/MariaDbInstallation.png)
+
+2- Securing Mariadb
+
+Due to the default configuration leaving your MariaDB installation unsecured, we will utilize a 
+script provided by the mariadb-server package to enhance security by restricting access to the 
+server and removing unused accounts. Execute the script using the following command: sudo 
+mysql_secure_installation. During execution, you may be prompted to switch to Unix socket 
+authentication. As we already have a protected root account, select 'N' to decline the switch.
+
+	sudo mysql_secure_installation
+
+![Securing Mariadb](photos/bonus/SecuringMariadb.png)
+
+3- Access mariadb.
+
+	mariadb
+
+![Access mariadb](photos/bonus/accessMariaDb.png)
+
+4- Create a database for Wordpress
+
+	CREATE DATABASE wp_database;
+
+![Create database](photos/bonus/CreateDatabase.png)
+
+5- Create a user inside database and grant privileges to it and update the permissions
+
+	CREATE USER 'eseferi'@'localhost' IDENTIFIED BY '12345';
+	GRANT ALL PRIVILEGES ON wp_database.* TO 'eseferi'@'localhost';
+	FLUSH PRIVILEGES;
+
+![Create User inside database](photos/bonus/CreateUser.png)
+
+6- Exit
+
+	exit
+
+![exit database](photos/bonus/ExitMariadb.png)
+
+### PHP
+
+💡 What is PHP? PHP, a widely-used programming language, primarily serves for the development of dynamic web applications and interactive websites. Notably, PHP executes on the server side.
+
+1- Install necessary packages to run web applications written in PHP language and that need to connect to a MySQL database
+
+	sudo apt install php-cgi php-mysql
+
+![Install packages](photos/bonus/PackageInstallation.png)
+
+2- Configure worpress. Lets start by going to html and copying wp-config-sample.php and renaming to wp-config.php
+
+	cd /var/www/html
+	cp wp-config-sample.php wp-config.php
+
+![copying wp-config-sample.php](photos/bonus/Copyingwp_config.png)
+
+3- Edit wp-config.php
+
+	nano wp-config.php
+
+![nano wp-config.php](photos/bonus/nanoWpconfig.png)
+
+and modify from 
+
+![Underlined has to be changed](photos/bonus/underlinedtochange.png)
+
+to 
+
+![Underlined that changed](photos/bonus/UnderlinedthatChanged.png)
+
+
+4- Activate the fastcgi-php module in Lighttpd to enhance the performance and speed of web 
+applications on the server, and update it in the end
+
+	sudo lighty-enable-mod fastcgi
+	sudo lighty-enable-mod fastcgi-php
+	sudo service lighttpd force-reload
+
+![Activate lighty-enable-mod](photos/bonus/activatelighty-enable-mod.png)
+
+5- Go to your browser and type localhost
+
+![Local Host on Browser](photos/bonus/localhostOnBrowser.png)
+
+6- Fill on the fields and press on <b><i>Install WordPress</i></b>
+
+![Fill on the fields in Wordpress](photos/bonus/FillfieldsInWordPress.png)
+![Installed Wordpress](photos/bonus/InstalledWordPress.png)
+
+
+7- If you sign in you will se your Wordpress dashboard
+
+![Wordpress Dashboard](photos/bonus/WordpressDashpoard.png)
+
+8- If we access our localhost again from the browser, we can observe our functional page.
+
+![Functional Wordpress page](photos/bonus/FucntionalWordPressPage.png)
