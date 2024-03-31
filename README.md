@@ -518,15 +518,100 @@ is fortified against unauthorized access, bolstering its overall security postur
 ![create sudo_config](photos/MachineConfiguration/create_sudo_config.png)
 
 
-📁 To meet the requirement of storing all sudo commands' input and output, we need to create a directory named sudo within the /var/log path. Execute the command mkdir /var/log/sudo in your terminal to create this directory. This ensures that all sudo activities are centrally logged, aiding in system administration and security monitoring.
+2- 📁 To meet the requirement of storing all sudo commands' input and output, we need to create a directory named sudo within the /var/log path. Execute the command mkdir /var/log/sudo in your terminal to create this directory. This ensures that all sudo activities are centrally logged, aiding in system administration and security monitoring.
 
 ![create sudo directory](photos/MachineConfiguration/create_sudofolder.png)
 
-✏️ Now, let's edit the file created in the previous step. As mentioned earlier, you can use your preferred text editor, but for simplicity, I'll demonstrate using nano. Execute the command nano /etc/sudoers.d/sudo_config in your terminal to open the file for editing. This step allows us to configure password policies securely and effectively.
+3- ✏️ Now, let's edit the file created in the previous step. As mentioned earlier, you can use your preferred text editor, but for simplicity, I'll demonstrate using nano. Execute the command nano /etc/sudoers.d/sudo_config in your terminal to open the file for editing. This step allows us to configure password policies securely and effectively.
 
 ![configure sudo_config](photos/MachineConfiguration/config_sudoers.d.png)
 
-2- 
+
+### Strong Password Policy Settings 🔑
+
+1- The first step will be to edit the login.defs file.
+
+![nano login.defs file](photos/MachineConfiguration/nanologin.defs.png)
+
+2- PASS_MAX_DAYS 99999 -> PASS_MAX_DAYS 30 </br>
+PASS_MIN_DAYS 0 -> PASS_MIN_DAYS 2
+
+![configure login.defs file](photos/MachineConfiguration/config_login.defs.png)
+
+🔐 Let's delve into configuring password policies:
+
+    PASS_MAX_DAYS: This parameter sets the expiration time for passwords, with the number 
+    representing the duration in days.
+
+    PASS_MIN_DAYS: Here, you define the minimum number of days a password must be used before 
+    it can be changed.
+
+    PASS_WARN_AGE: This setting triggers a warning message to users, notifying them of the 
+    impending expiration of their password within the specified number of days.
+
+3- 🛠️ To proceed with the configuration, we need to install the necessary packages. Execute 
+the command sudo apt install libpam-pwquality in your terminal. When prompted, type 'Y' to 
+confirm the installation and patiently wait for it to complete. These packages provide 
+additional password quality checking capabilities, enhancing the security of your system.
+
+![Install libpam-quality](photos/MachineConfiguration/installlibpam-pwquality.png)
+
+4- 🔐 Next, let's revisit editing a file and modify some lines. Use the command nano /etc/pam.
+d/common-password in your terminal to open the file for editing. This step allows us to 
+configure password policies effectively within the system's common password handling 
+configuration.
+
+![nano common-password](photos/MachineConfiguration/nanocommon-password.png)
+
+5- After retry=3 we must add the following commands:
+    
+    minlen=10
+    ucredit=-1
+    dcredit=-1
+    lcredit=-1
+    maxrepeat=3
+    reject_username
+    difok=7
+    enforce_for_root
+
+![config common-password](photos/MachineConfiguration/config_common-password.png)
+
+🤔 Let's break down each command:
+
+    minlen=10: Sets the minimum number of characters required for a password.
+
+    ucredit=-1: Specifies that the password must include at least one uppercase letter.
+
+    dcredit=-1: Requires the presence of at least one digit in the password.
+
+    lcredit=-1: Ensures the password contains at least one lowercase letter.
+
+    maxrepeat=3: Limits the repetition of the same character to a maximum of 3 times consecutively.
+
+    reject_username: Prohibits the password from containing the username.
+
+    difok=7: Specifies that at least 7 characters in the new password must differ from the old password.
+
+    enforce_for_root: Enforces these password policies for the root user, enhancing security even for privileged accounts.
+
+### Connect from SSH 
+
+1- Before closing the virtual machine, don't forget to save a snapshot through VirtualBox's 
+configuration settings. This ensures that you can easily revert to the current state of the 
+machine if needed. Simply navigate to the snapshot manager and create a snapshot with a 
+descriptive name. This precautionary measure safeguards your progress and configurations while 
+preparing for SSH connectivity.
+🔒 To establish an SSH connection, start by closing the virtual machine. Then, open VirtualBox and navigate to the machine's configuration settings. This step allows us to adjust network settings and enable SSH connectivity for the virtual machine.
+
+![open settings](photos/MachineConfiguration/GotoNetwork.png)
+
+And set the port
+
+![set port](photos/MachineConfiguration/setport.png)
+
+2- To connect to the virtual machine from the host machine, open a terminal on the host and type ssh eseferi@localhost -p 4242. This command initiates an SSH connection to the virtual machine, specifying the username eseferi and port 4242. You'll be prompted to enter the user password. Once authenticated, the login prompt will appear in green, indicating a successful connection.
+
+
 
 
 
