@@ -9,7 +9,7 @@
 
     With "Born to be Root," users embark on a journey of discovery and mastery, gaining the skills and confidence needed to thrive in the dynamic world of Linux system administration. Whether it's setting up servers, troubleshooting issues, or optimizing performance, this guide serves as a trusted companion for anyone seeking to harness the power of Linux and become a true root user.
 
-    For more to understand better what is required I have uploaded the pdf of the subject inside this repository.
+For more check the [subject](subject.pdf)
 
 # STEP1: Download the VirtualBox
 
